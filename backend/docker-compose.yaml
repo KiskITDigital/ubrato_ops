@@ -16,6 +16,7 @@ services:
       - .env
 
   postgres_migration:
+    profiles: ["migration"]
     image: ubrato-back-api
     container_name: ubrato-back-postgres-migration
     command: alembic upgrade head
@@ -26,6 +27,7 @@ services:
       - .env
 
   typesense_migration:
+    profiles: ["migration"]
     image: ubrato-back-typesense-migration
     container_name: ubrato-back-typesense-migration
     restart: on-failure
