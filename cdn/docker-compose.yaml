@@ -1,0 +1,22 @@
+services:
+  api:
+    image: ubrato-storage-api
+    container_name: ubrato-storage-api
+    hostname: cdn
+    restart: unless-stopped
+    networks:
+      - ubrato-cdn-network
+    # ports:
+    #   - "8001:8000"
+    volumes:
+      - ubrato-storage-files:${STORAGE_FOLDER}
+    env_file:
+      - .env
+
+volumes:
+  ubrato-storage-files:
+    name: ubrato-storage-files
+
+networks:
+  ubrato-cdn-network:
+    name: ubrato-cdn-network

@@ -1,0 +1,25 @@
+http://ubrato.ru:8001 {
+    reverse_proxy http://cdn:8000
+}
+
+http://* {
+    redir https://{host}{uri}
+}
+
+https://api.ubrato.ru {
+    reverse_proxy http://backend:8000
+}
+
+https://cdn.ubrato.ru {
+    reverse_proxy http://cdn:8000
+}
+
+https://ubrato.ru {
+    route {
+        basicauth /* bcrypt {
+            admin $2a$14$i8CNgvH3Gf.fwwWwzh.Rsu3Zc0zc5gRjTqaR9jB6VZSvCQc2L6HGu
+        }
+
+        reverse_proxy http://front:80
+    }
+}

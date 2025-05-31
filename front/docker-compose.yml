@@ -1,0 +1,12 @@
+services:
+  front:
+    image: ubrato-front
+    container_name: ubrato-front
+    hostname: front
+    restart: unless-stopped
+    networks:
+      - ubrato-front-network
+
+networks:
+  ubrato-front-network:
+    name: ubrato-front-network

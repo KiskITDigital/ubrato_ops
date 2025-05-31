@@ -1,0 +1,14 @@
+services:
+  app:
+    image: ubrato-email-sender
+    container_name: ubrato-email-sender-app
+    restart: unless-stopped
+    networks: 
+     - ubrato-back-nats-network
+    env_file:
+      - .env
+
+networks:
+  ubrato-back-nats-network:
+    name: ubrato-back-nats-network
+    external: true

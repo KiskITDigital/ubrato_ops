@@ -1,0 +1,35 @@
+services:
+  caddy:
+    image: caddy:2.10-alpine
+    container_name: ubrato-ops-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8001:8001"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ubrato-ops-caddy-data:/data
+      - ubrato-ops-caddy-config:/config
+    networks:
+      - ubrato-back-network
+      - ubrato-cdn-network
+      - ubrato-front-network
+
+volumes:
+  ubrato-ops-caddy-data:
+    name: ubrato-ops-caddy-data
+  ubrato-ops-caddy-config:
+    name: ubrato-ops-caddy-config
+
+networks:
+  ubrato-back-network:
+    name: ubrato-back-network
+    external: true
+  ubrato-cdn-network:
+    name: ubrato-cdn-network
+    external: true
+  ubrato-front-network:
+    name: ubrato-front-network
+    external: true
+  
