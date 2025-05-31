@@ -10,9 +10,9 @@ https://api.ubrato.ru {
     reverse_proxy http://backend:8000
 }
 
-https://cdn.ubrato.ru {
-    reverse_proxy http://cdn:8000
-}
+# https://cdn.ubrato.ru {
+#     reverse_proxy http://cdn:8000
+# }
 
 https://ubrato.ru {
     route {

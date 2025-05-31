@@ -1,0 +1,5 @@
+http://ubrato.ru {
+    root * /srv/www
+
+    file_server
+}

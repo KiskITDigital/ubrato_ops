@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     networks:
       - ubrato-front-network
+    volumes:
+       - "./Caddyfile:/etc/caddy/Caddyfile"
 
 networks:
   ubrato-front-network:
