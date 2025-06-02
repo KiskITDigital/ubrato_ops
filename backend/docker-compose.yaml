@@ -74,7 +74,7 @@ services:
   typesense:
     image: typesense/typesense:28.0-amd64
     container_name: ubrato-back-typesense
-    hostname: ubrato-back-typesense
+    hostname: backend-typesense
     command: --data-dir /data --api-key=${TYPESENSE_API_KEY} --enable-cors
     restart: unless-stopped
     # ports:

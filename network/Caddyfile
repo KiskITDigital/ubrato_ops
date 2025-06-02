@@ -2,6 +2,14 @@ http://ubrato.ru:8001 {
     reverse_proxy http://cdn:8000
 }
 
+http://ubrato.ru:8002 {
+    reverse_proxy http://backend-typesense-web:8000
+}
+
+http://ubrato.ru:8108 {
+    reverse_proxy http://backend-typesense:8108
+}
+
 http://* {
     redir https://{host}{uri}
 }
@@ -14,9 +22,9 @@ https://api.ubrato.ru {
 #     reverse_proxy http://cdn:8000
 # }
 
-https://search.ubrato.ru {
-    reverse_proxy http://backend-typesense-web:80
-}
+# https://search.ubrato.ru {
+#     reverse_proxy http://backend-typesense-web:80
+# }
 
 https://ubrato.ru {
     handle /v1/* {

@@ -7,6 +7,8 @@ services:
       - "80:80"
       - "443:443"
       - "8001:8001"
+      - "8002:8002"
+      - "8108:8108"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ubrato-ops-caddy-data:/data
@@ -15,6 +17,7 @@ services:
       - ubrato-back-network
       - ubrato-cdn-network
       - ubrato-front-network
+      - ubrato-back-typesense-network
 
 volumes:
   ubrato-ops-caddy-data:
@@ -31,5 +34,8 @@ networks:
     external: true
   ubrato-front-network:
     name: ubrato-front-network
+    external: true
+  ubrato-back-typesense-network:
+    name: ubrato-back-typesense-network
     external: true
   
