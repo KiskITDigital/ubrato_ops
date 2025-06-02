@@ -87,7 +87,7 @@ services:
   typesense-web:
     image: ghcr.io/bfritscher/typesense-dashboard:latest
     container_name: ubrato-back-typesense-web
-    hostname: back-typesense-web
+    hostname: backend-typesense-web
     restart: unless-stopped
     # ports:
     #   - "3003:80"

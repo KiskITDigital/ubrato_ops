@@ -14,8 +14,15 @@ https://api.ubrato.ru {
 #     reverse_proxy http://cdn:8000
 # }
 
+https://search.ubrato.ru {
+    reverse_proxy http://backend-typesense-web:80
+}
+
 https://ubrato.ru {
-    route {
+    handle /v1/* {
+        reverse_proxy http://backend:8000
+    }
+    handle {
         basicauth /* bcrypt {
             admin $2a$14$i8CNgvH3Gf.fwwWwzh.Rsu3Zc0zc5gRjTqaR9jB6VZSvCQc2L6HGu
         }
