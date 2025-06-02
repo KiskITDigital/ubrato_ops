@@ -3,7 +3,7 @@ http://ubrato.ru:8001 {
 }
 
 http://ubrato.ru:8002 {
-    reverse_proxy http://backend-typesense-web:8000
+    reverse_proxy http://backend-typesense-web:80
 }
 
 http://ubrato.ru:8108 {
