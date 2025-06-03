@@ -1,29 +1,44 @@
+{
+    log {
+        level INFO
+        output stdout
+        format json
+    }
+}
+
 http://ubrato.ru:8001 {
     reverse_proxy http://cdn:8000
+    log
 }
 
 http://ubrato.ru:8002 {
     reverse_proxy http://backend-typesense-web:80
+    log
 }
 
 http://ubrato.ru:8108 {
     reverse_proxy http://backend-typesense:8108
+    log
 }
 
 http://* {
     redir https://{host}{uri}
+    log
 }
 
 https://api.ubrato.ru {
     reverse_proxy http://backend:8000
+    log
 }
 
 # https://cdn.ubrato.ru {
 #     reverse_proxy http://cdn:8000
+#    log
 # }
 
 # https://search.ubrato.ru {
 #     reverse_proxy http://backend-typesense-web:80
+#    log
 # }
 
 https://ubrato.ru {
@@ -37,4 +52,5 @@ https://ubrato.ru {
 
         reverse_proxy http://front:80
     }
+    log
 }

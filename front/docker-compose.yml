@@ -7,7 +7,7 @@ services:
     networks:
       - ubrato-front-network
     volumes:
-       - "./Caddyfile:/etc/caddy/Caddyfile"
+      - "./Caddyfile:/etc/caddy/Caddyfile"
 
 networks:
   ubrato-front-network:
