@@ -31,15 +31,15 @@ https://api.ubrato.ru {
     log
 }
 
-# https://cdn.ubrato.ru {
-#     reverse_proxy http://cdn:8000
-#    log
-# }
+https://cdn.ubrato.ru {
+    reverse_proxy http://cdn:8000
+    log
+}
 
-# https://search.ubrato.ru {
-#     reverse_proxy http://backend-typesense-web:80
-#    log
-# }
+https://search.ubrato.ru {
+    reverse_proxy http://backend-typesense:8108
+    log
+}
 
 https://ubrato.ru {
     handle /v1/* {
