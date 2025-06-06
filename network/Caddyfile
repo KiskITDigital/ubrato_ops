@@ -28,19 +28,16 @@ https://cdn.ubrato.ru {
 
 https://search.ubrato.ru {
     reverse_proxy http://backend-typesense:8108
+    header {
+        Access-Control-Allow-Credentials "true"
+    }
     log
 }
 
 https://ubrato.ru {
-    handle /v1/* {
-        reverse_proxy http://backend:8000
+    basicauth /* bcrypt {
+        admin $2a$14$i8CNgvH3Gf.fwwWwzh.Rsu3Zc0zc5gRjTqaR9jB6VZSvCQc2L6HGu
     }
-    handle {
-        basicauth /* bcrypt {
-            admin $2a$14$i8CNgvH3Gf.fwwWwzh.Rsu3Zc0zc5gRjTqaR9jB6VZSvCQc2L6HGu
-        }
-
-        reverse_proxy http://front:80
-    }
+    reverse_proxy http://front:80
     log
 }
