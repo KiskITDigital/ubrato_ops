@@ -22,7 +22,7 @@ services:
 
   postgres_migration:
     profiles: ["migration"]
-    image: registry.ubrato.ru/ubrato-back-api:latest
+    image: registry.ubrato.ru/ubrato-back-postgres-migration:latest
     container_name: ubrato-back-postgres-migration
     command: alembic upgrade head
     restart: on-failure
@@ -127,7 +127,7 @@ services:
       - ubrato-back-nats-data:/data
 
   dispatcher:
-    image: registry.ubrato.ru/ubrato-ops-email-dispatcher:latest
+    image: registry.ubrato.ru/ubrato-email-dispatcher:latest
     container_name: ubrato-ops-email-dispatcher
     restart: unless-stopped
     networks: 
