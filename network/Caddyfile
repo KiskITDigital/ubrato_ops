@@ -16,6 +16,11 @@ http://* {
     log
 }
 
+https://registry.ubrato.ru {
+    reverse_proxy http://registry:5000
+    log
+}
+
 https://api.ubrato.ru {
     reverse_proxy http://backend:8000
     log

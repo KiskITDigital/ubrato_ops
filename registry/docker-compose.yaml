@@ -1,0 +1,27 @@
+services:
+  registry:
+    image: registry:3.0
+    container_name: ubrato-ops-registry
+    hostname: registry
+    restart: unless-stopped
+    # ports:
+    #   - "5000:5000"
+    volumes:
+      - ubrato-ops-registry-data:/var/lib/registry:rw
+      - ./auth:/auth:ro
+    networks:
+      - ubrato-ops-registry-network
+    environment:
+      OTEL_TRACES_EXPORTER: none
+      REGISTRY_LOG_LEVEL: info
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+
+volumes:
+  ubrato-ops-registry-data:
+    name: ubrato-ops-registry-data
+
+networks:
+  ubrato-ops-registry-network:
+    name: ubrato-ops-registry-network
