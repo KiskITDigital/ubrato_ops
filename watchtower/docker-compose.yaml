@@ -1,0 +1,15 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:1.7.1
+    container_name: ubrato-ops-watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config.json:/config.json
+    environment:
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_INCLUDE_RESTARTING: true
+      WATCHTOWER_INCLUDE_STOPPED: true
+      WATCHTOWER_REVIVE_STOPPED: true
+      WATCHTOWER_SCHEDULE: "30 * * * * *"  # Check new images every 30 seconds
+      WATCHTOWER_TIMEOUT: 30s
