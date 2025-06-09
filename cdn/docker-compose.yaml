@@ -1,6 +1,6 @@
 services:
   api:
-    image: ubrato-storage-api
+    image: registry.ubrato.ru/ubrato-storage-api:latest
     container_name: ubrato-storage-api
     hostname: cdn
     restart: unless-stopped

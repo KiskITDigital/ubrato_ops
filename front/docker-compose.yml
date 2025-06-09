@@ -1,6 +1,6 @@
 services:
   front:
-    image: ubrato-front
+    image: registry.ubrato.ru/ubrato-front:latest
     container_name: ubrato-front
     hostname: front
     restart: unless-stopped

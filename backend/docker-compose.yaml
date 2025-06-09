@@ -1,6 +1,6 @@
 services:
   api:
-    image: ubrato-back-api
+    image: registry.ubrato.ru/ubrato-back-api:latest
     container_name: ubrato-back-api
     hostname: backend
     restart: unless-stopped
@@ -14,10 +14,15 @@ services:
       - ubrato-back-nats-network
     env_file:
       - .env
+    depends_on:
+      postgres:
+        condition: service_started
+      nats:
+        condition: service_started
 
   postgres_migration:
     profiles: ["migration"]
-    image: ubrato-back-api
+    image: registry.ubrato.ru/ubrato-back-api:latest
     container_name: ubrato-back-postgres-migration
     command: alembic upgrade head
     restart: on-failure
@@ -25,16 +30,22 @@ services:
       - ubrato-back-postgres-network
     env_file:
       - .env
+    depends_on:
+      postgres:
+        condition: service_started
 
   typesense_migration:
     profiles: ["migration"]
-    image: ubrato-back-typesense-migration
+    image: registry.ubrato.ru/ubrato-back-typesense-migration:latest
     container_name: ubrato-back-typesense-migration
     restart: on-failure
     networks:
       - ubrato-back-typesense-network
     env_file:
       - .env
+    depends_on:
+      typesense:
+        condition: service_started
 
   postgres:
     image: postgres:17-alpine
@@ -114,6 +125,18 @@ services:
       - ubrato-back-nats-network
     volumes:
       - ubrato-back-nats-data:/data
+
+  dispatcher:
+    image: registry.ubrato.ru/ubrato-ops-email-dispatcher:latest
+    container_name: ubrato-ops-email-dispatcher
+    restart: unless-stopped
+    networks: 
+     - ubrato-back-nats-network
+    env_file:
+      - dispatcher.env
+    depends_on:
+      nats:
+        condition: service_started
 
 volumes:
   ubrato-back-postgres-data:
